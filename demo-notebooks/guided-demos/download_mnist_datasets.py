@@ -39,6 +39,10 @@ def download_mnist_dataset(destination_dir):
 
     print(f"MNIST dataset downloaded in {destination_dir}")
 
+    # unzip the gzipped files
+    [os.system(f"gunzip {destination_dir}/{file}") for file in os.listdir(destination_dir) if file.endswith(".gz")]
+    # delete the gzipped files
+    [os.remove(f"{destination_dir}/{file}") for file in os.listdir(destination_dir) if file.endswith(".gz")]
 
 # Specify the directory where you
 destination_dir = os.path.dirname(os.path.abspath(__file__))
